@@ -46,3 +46,9 @@ variable "main_network_block" {
   description = "Base CIDR block to be used in our VPC."
   default = "10.0.0.0/16"
 }
+
+variable "s3_bucket_name" {
+  type = string
+  description = "Bucket name for cluster storage"
+  default = "teleport.calvineotieno.com"
+}
