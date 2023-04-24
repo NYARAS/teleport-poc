@@ -52,3 +52,9 @@ variable "s3_bucket_name" {
   description = "Bucket name for cluster storage"
   default = "teleport.calvineotieno.com"
 }
+
+variable "cluster_name" {
+    type = string
+    description = "Name of the Teleport cluster"
+    default = "demo"
+}
