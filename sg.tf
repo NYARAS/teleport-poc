@@ -29,3 +29,22 @@ resource "aws_security_group_rule" "cluster_ingress_services" {
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.cluster.id
 }
+
+resource "aws_security_group_rule" "cluster_egress" {
+  description       = "Permit all outbound traffic"
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.cluster.id
+}
+
+resource "aws_security_group" "proxy_acm" {
+  name        = "${var.name_prefix}-proxy-acm"
+  description = "Proxy SG for application LB (ACM)"
+  vpc_id      = module.vpc.vpc_id
+  tags = {
+    TeleportCluster = "${var.name_prefix}-${var.cluster_name}"
+  }
+}
