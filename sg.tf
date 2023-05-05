@@ -48,3 +48,24 @@ resource "aws_security_group" "proxy_acm" {
     TeleportCluster = "${var.name_prefix}-${var.cluster_name}"
   }
 }
+
+resource "aws_lb_target_group" "proxy_proxy" {
+    name     = "${var.name_prefix}-proxy-proxy"
+  port     = 3023
+  vpc_id   = module.vpc.vpc_id
+  protocol = "TCP"
+}
+
+resource "aws_lb_target_group" "proxy_tunnel_acm" {
+  name     = "${var.name_prefix}-proxy-tunnel"
+  port     = 3024
+  vpc_id   = module.vpc.vpc_id
+  protocol = "TCP"
+}
+
+resource "aws_lb_target_group" "proxy_kube" {
+  name     = "${var.name_prefix}-proxy-kube"
+  port     = 3026
+  vpc_id   = module.vpc.vpc_id
+  protocol = "TCP"
+}
