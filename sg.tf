@@ -69,3 +69,24 @@ resource "aws_lb_target_group" "proxy_kube" {
   vpc_id   = module.vpc.vpc_id
   protocol = "TCP"
 }
+
+resource "aws_lb_target_group" "proxy_mysql" {
+  name     = "${var.name_prefix}-proxy-mysql"
+  port     = 3036
+  vpc_id   = module.vpc.vpc_id
+  protocol = "TCP"
+}
+
+resource "aws_lb_target_group" "proxy_postgres" {
+  name     = "${var.name_prefix}-proxy-postgres"
+  port     = 5432
+  vpc_id   = module.vpc.vpc_id
+  protocol = "TCP"
+}
+
+resource "aws_lb_target_group" "proxy_mongodb" {
+  name     = "${var.name_prefix}-proxy-mongodb"
+  port     = 27017
+  vpc_id   = module.vpc.vpc_id
+  protocol = "TCP"
+}
