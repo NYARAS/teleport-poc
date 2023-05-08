@@ -90,3 +90,15 @@ resource "aws_lb_target_group" "proxy_mongodb" {
   vpc_id   = module.vpc.vpc_id
   protocol = "TCP"
 }
+
+resource "aws_lb_target_group" "proxy_web_acm" {
+  name     = "${var.name_prefix}-proxy-web"
+  port     = 3080
+  vpc_id   = module.vpc.vpc_id
+  protocol = "HTTPS"
+
+  health_check {
+    path     = "/web/login"
+    protocol = "HTTPS"
+  }
+}
