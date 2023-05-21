@@ -58,3 +58,8 @@ variable "cluster_name" {
     description = "Name of the Teleport cluster"
     default = "demo"
 }
+
+variable "ami_name" {
+  description = "AMI name to use"
+  type = string
+}
